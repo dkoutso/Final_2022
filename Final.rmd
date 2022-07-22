@@ -32,6 +32,7 @@ $H_A$: There is a difference between how effective the vaccine is for any of the
 
 ### Methods
 
+This data set is a CAT~CAT since both variables are categorical. Whether the vaccine is effective or not can be categorized and also, the subgroups can be categorized. A barchat will be used to describe the graphical results, a data table for the numerical results, a chi-squared test and fisher exact test to describe the inferential results for the different 4 subgroups. To end I will give my recommendation on whether or not each sub-group should take the vaccine.   
 
 ## Males
 
