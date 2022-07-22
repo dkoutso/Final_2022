@@ -18,6 +18,7 @@ FinalDat <-read.csv(file="final_Data.csv",header=TRUE)
 FinalData <- FinalDat  %>% select(-one_of("X"))
 FinalData <- FinalData %>%
 mutate(across(where(is.character), as.factor))
+Females=filter(FinalData,sex=="F")
 ```
 
 # Introduction
@@ -26,7 +27,7 @@ A new  preventative vaccine (covid91) is under test in clinical trials. Given th
 
 ### Null and Alternative hypothesis
 
-$H_O$: There is no difference between how effective the vaccine is for any of the sub-groups that uses it. These two variables are independent.  
+$H_O$: . There is no difference between how effective the vaccine is for any of the subgroup that uses it.These two variables are independent.    
 
 $H_A$: There is a difference between how effective the vaccine is for any of the subgroup that uses it. These two variables are dependent.  
 
@@ -47,7 +48,7 @@ barchartGC(~infected + treatment,data=FinalData, type="percent")
 
 On the first Plot which represents the percentage of male that took the vaccine to those who did not, it seen that the male that took the vaccine have a lower percentage(chance) of contracting the Covid19.  
 On the second plot, the frequency of males that the vaccine is slightly lower to contract the covid19 as compared to those who took the placebo drug.  
-Over all, the men that contracted covid19 the most are the ones that took the placebo drug, and so the vaccine if effective in males for previnting the covid19.  
+Over all, the men that contracted covid19 the most are the ones that took the placebo drug, and so the vaccine is effective in males for previnting the covid19.  
 
 ### Numerical Descriptive results
 
@@ -79,31 +80,110 @@ For the male, it is observed from the analysis that the vaccine is effective in 
 
 ### Graphical Descriptive Results
 
+```{r}
+barchartGC(~infected + treatment,data=Females)
+barchartGC(~infected + treatment,data=Females, type="percent")
+
+```
+Based on this plot the females that took the placebo have a greater risk of contracting the virus.     
+
 ### Numerical Descriptive Results
 
+```{r}
+table1 <- xtabs(~infected + treatment,data=Females)
+rowPerc(table1)
+colPerc(table1)
+```
+
+the table shows that the females that took the placebo are more likely to contract the virus.  
 ### Inferential results
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+from the chi-squared test, the p-value is 0.0011 which is less than 0.05, so we reject the Null hypothesis.  
+From the fisher's exact test, the p-value is 0.00094.  
+the odds ratio shows that there are 1.4 chances that the females that take the vaccine will not contract the vaccine. 
+
+
 ### Females Conclusion
+to conclude, since from the analysis it is seen that the females 
+that take the vaccine are more likely to not contract the the vaccine,so I recommend that the subgroup females should use the vaccine.  
 
 ## LGBTQ
 
 ### Graphical Descriptive Results
 
+```{r}
+barchartGC(~treatment + LGBTQ,data=FinalData)
+
+```
+
+From this plot, after the gay and straight take the placebo medication and the vaccine, the frequency of the effect of gay that took the vaccine and straight that took the vaccine is the same.  
+the straight that took the vaccine and the placebo too, have the same frquency on the effectivenes of the placebo and the vaccine.
+
 ### Numerical Descriptive Results
+
+```{r}
+table1 <- xtabs(~treatment + LGBTQ,data=FinalData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The table shows that, after the straight and the gay have received the vaccine and placebo, there is a slight(little) or no different of the effect of the vaccine or placebo on the gays and the straight.  
 
 ### Inferential results
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+From the table above, the chi-squared test gives us a p-value of 0.8924, so we fail to reject the null hypothesis by saying that There is no difference between how effective the vaccine is for either the gays or the straight in LGBTQ.    
+From the exact test, the P-value is 0.88, which is greater than 0.05 and so we fail to reject the null hypothesis.  
+The odds ratio tells us that there are 1.005 chances that the vaccine or the placebo have no effect on the gays and straight in the subgroup LBTQ.
+
 ### LGBTQ Conclusion
 
+To conclude, there is no difference in the effect of vaccine or the placebo for the gays and the straight in LGBTQ subgroup. For this reason, i recommend that the the subgroup LGBTQ should not receive the vaccine.  
 
 ## Druggies
 
 ### Graphical Descriptive Results
 
+```{r}
+barchartGC(~treatment + DrugUser,data=FinalData)
+
+```
+from this table, there is no difference in the effect of either the placebo or the vaccine on those who use drugs or no.  
+
 ### Numerical Descriptive Results
+
+```{r}
+table1 <- xtabs(~treatment + DrugUser,data=FinalData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+From this table, there is a slight(little) difference or no in the effect of the placebo or the vaccine on either those that use drugs or not.  
 
 ### Inferential results
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The chi-squared test gives a p-value of 0.18, which is greater than 0.05,so we fail to reject the null hypothesis.  
+On the fisher's exact test, the odds ratio says that there is 1.05 chance that the vaccine or placebo have no effect on either the drug users or those that do not use drugs.   
+
 ### Druggies Conclusion
+
+Since the there are no difference on effectivenses of the placebo or the vaccine on the drug users or the non drug users, I do not recommend the vaccine for the subgroup Druggies.
 
 ## Final Conclusion
