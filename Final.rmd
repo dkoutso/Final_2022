@@ -46,8 +46,8 @@ barchartGC(~infected + treatment,data=FinalData, type="percent")
 
 ```
 
-On the first Plot which represents the percentage of male that took the vaccine to those who did not, it seen that the male that took the vaccine have a lower percentage(chance) of contracting the Covid19.  
-On the second plot, the frequency of males that the vaccine is slightly lower to contract the covid19 as compared to those who took the placebo drug.  
+On the second Plot which represents the percentage of male that took the vaccine to those who did not, it seen that the male that took the vaccine have a lower percentage(chance) of contracting the Covid19.  
+On the first plot, the frequency of males that the vaccine is slightly lower to contract the covid19 as compared to those who took the placebo drug.  
 Over all, the men that contracted covid19 the most are the ones that took the placebo drug, and so the vaccine is effective in males for previnting the covid19.  
 
 ### Numerical Descriptive results
@@ -159,6 +159,7 @@ To conclude, there is no difference in the effect of vaccine or the placebo for 
 barchartGC(~treatment + DrugUser,data=FinalData)
 
 ```
+
 from this table, there is no difference in the effect of either the placebo or the vaccine on those who use drugs or no.  
 
 ### Numerical Descriptive Results
@@ -184,6 +185,10 @@ On the fisher's exact test, the odds ratio says that there is 1.05 chance that t
 
 ### Druggies Conclusion
 
-Since the there are no difference on effectivenses of the placebo or the vaccine on the drug users or the non drug users, I do not recommend the vaccine for the subgroup Druggies.
+Since the there are no difference on effectiveness of the placebo or the vaccine on the drug users or the non drug users, I do not recommend the vaccine for the subgroup Druggies.
 
 ## Final Conclusion
+
+The question asked was if the Covid-19 vaccine exhibits different effectiveness across the variety of subgroups.  
+Based on the general Null and Alternative hypothesis, I reject the null hypothesis because there was eventually different effectiveness of the vaccine across the different subgroups.  
+The vaccine was effective on the males, and it was eventually effective on the females,and so I recommended them to use the Vaccine. The LGBTQ subgroup and the Druggies had no effectiveness of the vaccine on them, and so i did not recommend the vaccine to them.   
