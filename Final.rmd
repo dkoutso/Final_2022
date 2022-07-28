@@ -21,8 +21,8 @@ mutate(across(where(is.character), as.factor))
 Females=filter(FinalData,sex=="F")
 LGBTQ=filter(FinalData,LGBTQ=="gay")
 LGBTQ=filter(FinalData,LGBTQ=="straight")
-DrugUser=filter(FinalData,DrugUser=="yes")
-DrugUser=filter(FinalData,DrugUser=="no")
+DrugUser=filter(FinalDat,DrugUser=="no")
+DrugUser=filter(FinalDat,DrugUser=="yes")
 ```
 
 # Introduction
@@ -76,12 +76,12 @@ effecM=ftestM$estimate/(ftestM$estimate+1)*100
 
 Based on the inferential results, the chi-squared test gives a p-value of 0.00000000000012, which is less than 0.05, so we reject the null hypothesis. 
 The fisher's exact test gives a P-value of 0.00000000000019.  
-The odds ratio tells us that the males that take the vaccine hvae 1.7 chances to not contract the virus as compared to those that took the placebo .  
-the efficacy is `r effecM`
+The odds ratio tells us that the males that take the vaccine have 1.7 chances to not contract the virus as compared to those that took the placebo .  
+the efficacy is `r effecM`%
 
 ### Male Conclusion
 
-For the male, it is observed from the analysis that the vaccine is effective in preventing them from getting the virus. For this reason, I recommend the males to take the vaccine.  
+For the male, it is observed from the analysis and from the efficacy that the vaccine is effective in preventing them from getting the virus. For this reason, I recommend the males to take the vaccine.  
 
 ## Females
 
@@ -92,6 +92,7 @@ barchartGC(~infected + treatment,data=Females)
 barchartGC(~infected + treatment,data=Females, type="percent")
 
 ```
+
 Based on this plot the females that took the placebo have a greater risk of contracting the virus.     
 
 ### Numerical Descriptive Results
@@ -102,23 +103,27 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-the table shows that the females that took the placebo are more likely to contract the virus.  
+the table shows that the females that took the placebo are more likely to contract the virus.
+
+
 ### Inferential results
 
 ```{r}
 chisq.test(table1)
 chisqtestGC(table1)
-fisher.test(table1)
+ftestF=fisher.test(table1)
+ftestF
+effecF=ftestF$estimate/(ftestF$estimate+1)*100
+
 ```
 
 from the chi-squared test, the p-value is 0.0011 which is less than 0.05, so we reject the Null hypothesis.  
 From the fisher's exact test, the p-value is 0.00094.  
-the odds ratio shows that there are 1.4 chances that the females that take the vaccine will not contract the vaccine. 
-
+the odds ratio shows that there are 1.4 chances that the females that take the vaccine will not contract the vaccine.   
+the efficacy is `r effecF`%  
 
 ### Females Conclusion
-to conclude, since from the analysis it is seen that the females 
-that take the vaccine are more likely to not contract the the vaccine,so I recommend that the subgroup females should use the vaccine.  
+to conclude, since from the analysis and the drug efficacy(58.8%)it is seen that the females that take the vaccine are more likely to not contract the the vaccine,so I recommend that the subgroup females should use the vaccine.    
 
 ## LGBTQ
 
@@ -140,21 +145,26 @@ colPerc(table1)
 ```
 
 The table shows that, in the LGBTQ subgroup, those that took the placebo have a greater rate of getting covid19(67.88) while those that took the vaccine have lower rate of getting covid19(32.12).  
+
 ### Inferential results
 
 ```{r}
 chisq.test(table1)
 chisqtestGC(table1)
-fisher.test(table1)
+ftestLGBTQ=fisher.test(table1)
+ftestLGBTQ
+effecLGBTQ=ftestLGBTQ$estimate/(ftestLGBTQ$estimate+1)*100
 ```
 
-From the table above, the chi-squared test gives us a p-value of 0.8924, so we fail to reject the null hypothesis by saying that There is no difference between how effective the vaccine is for either the gays or the straight in LGBTQ.    
-From the exact test, the P-value is 0.88, which is greater than 0.05 and so we fail to reject the null hypothesis.  
-The odds ratio tells us that there are 1.005 chances that the vaccine or the placebo have no effect on the gays and straight in the subgroup LBTQ.
+The chi-squared test give a p-value of 0.0011.  
+The fisher's exact test gives a p-value of 0.0009484.  
+Both the p-value of the fisher's exact test and the chi-squared test causes us to reject the null hypothesis because they are less than 0.05.  
+The odds ratio tells us there are 1.43 chances that the vaccine has a great effect of preventing the LGBTQ subgroup from getting covid19.  
+the efficacy is `r effecLGBTQ`%   
 
 ### LGBTQ Conclusion
 
-To conclude, there is no difference in the effect of vaccine or the placebo for the gays and the straight in LGBTQ subgroup. For this reason, i recommend that the the subgroup LGBTQ should not receive the vaccine.  
+To conclude, due to the analysis, and the efficacy of  the vaccine on the LGBTQ subgroup(58.8), I therefore recommend that that the vaccine should be used on the LGBTQ subgroup.  
 
 ## Druggies
 
@@ -166,7 +176,7 @@ barchartGC(~infected + treatment,data=DrugUser, type="percent")
 
 ```
 
-from this plot, those taking the placebo have a greater risk of contracting the covid19 as compared to those that take the vaccine.   
+from this plot, among the drug users,it is observed that taking the vaccine puts them a geater risk of getting the covid19.   
 
 ### Numerical Descriptive Results
 
@@ -176,25 +186,28 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-From this table, the drug users that took the placebo have a greater risk of getting covid19(67.73), those that the vaccine have a lower risk of getting covid19(32.27).    
+From this table, the drug users that took the vaccine have a greater risk of getting covid19(85.00).      
 
 ### Inferential results
 
 ```{r}
 chisq.test(table1)
 chisqtestGC(table1)
-fisher.test(table1)
+ftestDrugUser=fisher.test(table1)
+ftestDrugUser
+effecDrugUser=ftestDrugUser$estimate/(ftestDrugUser$estimate+1)*100
 ```
 
-The chi-squared test gives a p-value of 0.18, which is greater than 0.05,so we fail to reject the null hypothesis.  
-On the fisher's exact test, the odds ratio says that there is 1.05 chance that the vaccine or placebo have no effect on either the drug users or those that do not use drugs.   
+The chi-squared test gives a p-value of 0, which is  less than 0.05,so we reject the null hypothesis.    
+On the fisher's exact test, the odds ratio says that there is 0.017 chance that the vaccine have no effect on either the drug users.     
+the efficacy is `r effecDrugUser`%     
 
 ### Druggies Conclusion
 
-Since the there are no difference on effectiveness of the placebo or the vaccine on the drug users or the non drug users, I do not recommend the vaccine for the subgroup Druggies.
+the analysis show that the vaccine has no effect on the drug users as the ones that took the vaccine had the greatest rate of contracting the virus. More to that, the efficacy of the drug is 15.1, meaning it is not  effective on the subgroup DrugUsers, and so, I do not recommend the vaccine on druguser.     
 
 ## Final Conclusion
 
 The question asked was if the Covid-19 vaccine exhibits different effectiveness across the variety of subgroups.  
 Based on the general Null and Alternative hypothesis, I reject the null hypothesis because there was eventually different effectiveness of the vaccine across the different subgroups.  
-The vaccine was effective on the males, and it was eventually effective on the females,and so I recommended them to use the Vaccine. The LGBTQ subgroup and the Druggies had no effectiveness of the vaccine on them, and so i did not recommend the vaccine to them.   
+The vaccine was effective on the males, and it was eventually effective on the females,and so I recommended them to use the Vaccine. The vaccine was equally effective on the  LGBTQ subgroup and so i recommended that they should use the vaccine. The  Druggies had no effectiveness of the vaccine on them, and so i did not recommend the vaccine to them.     
