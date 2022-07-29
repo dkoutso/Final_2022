@@ -76,7 +76,7 @@ effecM=ftestM$estimate/(ftestM$estimate+1)*100
 
 Based on the inferential results, the chi-squared test gives a p-value of 0.00000000000012, which is less than 0.05, so we reject the null hypothesis. 
 The fisher's exact test gives a P-value of 0.00000000000019.  
-The odds ratio tells us that the males that take the vaccine have 1.7 chances to not contract the virus as compared to those that took the placebo .  
+The odds ratio tells us that the males that take the placebo are 1.7 times more likely to contract covid19 than those that took the vaccine .    
 the efficacy is `r effecM`%
 
 ### Male Conclusion
@@ -119,11 +119,11 @@ effecF=ftestF$estimate/(ftestF$estimate+1)*100
 
 from the chi-squared test, the p-value is 0.0011 which is less than 0.05, so we reject the Null hypothesis.  
 From the fisher's exact test, the p-value is 0.00094.  
-the odds ratio shows that there are 1.4 chances that the females that take the vaccine will not contract the vaccine.   
+the odds ratio shows that the females that take the placebo are 1.4 times likely to contract the covid19 than those that took the vaccine .   
 the efficacy is `r effecF`%  
 
 ### Females Conclusion
-to conclude, since from the analysis and the drug efficacy(58.8%)it is seen that the females that take the vaccine are more likely to not contract the the vaccine,so I recommend that the subgroup females should use the vaccine.    
+to conclude, since from the analysis and the drug efficacy(58.8%)it is seen that the females that take the vaccine are more likely to not contract the the virus,so I recommend that the subgroup females should use the vaccine.    
 
 ## LGBTQ
 
@@ -159,7 +159,7 @@ effecLGBTQ=ftestLGBTQ$estimate/(ftestLGBTQ$estimate+1)*100
 The chi-squared test give a p-value of 0.0011.  
 The fisher's exact test gives a p-value of 0.0009484.  
 Both the p-value of the fisher's exact test and the chi-squared test causes us to reject the null hypothesis because they are less than 0.05.  
-The odds ratio tells us there are 1.43 chances that the vaccine has a great effect of preventing the LGBTQ subgroup from getting covid19.  
+The odds ratio tells us that the LGBTQ subgroup that took the placebo are 1.43 times more likely to contract covid19 than those that took the vaccine.       
 the efficacy is `r effecLGBTQ`%   
 
 ### LGBTQ Conclusion
@@ -199,7 +199,7 @@ effecDrugUser=ftestDrugUser$estimate/(ftestDrugUser$estimate+1)*100
 ```
 
 The chi-squared test gives a p-value of 0, which is  less than 0.05,so we reject the null hypothesis.    
-On the fisher's exact test, the odds ratio says that there is 0.017 chance that the vaccine have no effect on either the drug users.     
+On the fisher's exact test, the odds ratio says that the drugusers that took the vaccine are 0.017 more likely to get covid19 than those that took the placebo  .     
 the efficacy is `r effecDrugUser`%     
 
 ### Druggies Conclusion
